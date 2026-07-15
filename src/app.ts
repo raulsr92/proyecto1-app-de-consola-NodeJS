@@ -1,4 +1,16 @@
+import { yarg } from "./config/plugins/yargs.plugin";
 
+
+console.log(process.argv)
+console.log("-------------------------------")
+console.log(yarg)
+
+
+
+
+
+
+/*
 
 console.log(process.argv)
 console.log(process.argv.length)
@@ -8,3 +20,4 @@ console.log(process.argv.length)
 const [tsnode,app,...argumentos] = process.argv
 
 console.log(argumentos)
+*/
