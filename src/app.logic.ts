@@ -1,22 +1,31 @@
 
 import fs from "fs";
+import { yarg } from "./config/plugins/yargs.plugin";
+
+console.log(yarg)
+
+// ➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤ Desestructurar YARG
+
+    const {b, l, s:showTable}= yarg;
+
+    console.log({b, l, showTable})
 
 
 // ➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤ Variables y Constantes
 
+
 let outputMessage = ""
-const base = 5
 const headerMessage = `
     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-    ░░░░░░░░░░░░░░░ Tabla del ${base} ░░░░░░░░░░░░░░░░
+    ░░░░░░░░░░░░░░░ Tabla del ${b} ░░░░░░░░░░░░░░░░
     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n
 `
 
 // ➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤ Agregar la tabla con un ciclo for
 
-for (let i = 1; i <= 10; i++) {
+for (let i = 1; i <= l; i++) {
 
-    outputMessage += `${base} x ${i} = ${base*i} \n`
+    outputMessage += `${b} x ${i} = ${b*i} \n`
     
 }
 
@@ -24,7 +33,10 @@ for (let i = 1; i <= 10; i++) {
 
 outputMessage = headerMessage + outputMessage
 
-console.log(outputMessage)
+if (showTable) {
+    console.log(outputMessage)
+}
+
 
 // ➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤➤ Guardar en archivo
 
@@ -32,7 +44,7 @@ const outputPath = `outputs`
 
 fs.mkdirSync(outputPath, {recursive:true})
 
-fs.writeFileSync(`${outputPath}/tabla-${base}.txt`,outputMessage);
+fs.writeFileSync(`${outputPath}/tabla-${b}.txt`,outputMessage);
 console.log("File was created!!")
 
 
