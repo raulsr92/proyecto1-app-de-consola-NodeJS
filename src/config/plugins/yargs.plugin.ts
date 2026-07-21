@@ -22,4 +22,15 @@ export const yarg = yargs(hideBin(process.argv))
         default: false,
         describe: 'Show Multiplication table'
     })
+    .check((argv, options)=>{
+
+        console.log(argv)
+        console.log("----------")
+        //console.log(options)
+
+        if (argv.b<1) throw new Error("Error: base must be a number")
+        
+        return true;
+        
+    })
     .parseSync()
