@@ -24,7 +24,7 @@ export const yarg = yargs(hideBin(process.argv))
     })
     .check((argv, options)=>{
 
-        console.log(argv)
+        //console.log(argv)
         console.log("----------")
         //console.log(options)
 
