@@ -1,4 +1,6 @@
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Interfaces 
+
 export interface CreateTableUseCase{
     execute:(options: CreateTableOptions)=>string;
 }
@@ -7,6 +9,8 @@ export interface CreateTableOptions{
     base: number,
     limit?: number,
 }
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Clase de caso de uso 
 
 
 export class CreateTable implements CreateTableUseCase{
