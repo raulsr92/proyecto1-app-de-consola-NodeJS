@@ -4,16 +4,18 @@ import { SaveFile } from "../domain/use-cases/save-file.use-case"
 interface RunOptions{
     base: number,
     limit: number,
-    showTable: boolean
+    showTable: boolean,
+    fileName: string,
+    fileDest: string
 }
 
 
 export class ServerApp{
 
-    static run({base, limit,showTable}:RunOptions){
+    static run({base, limit,showTable, fileName, fileDest}:RunOptions){
 
         console.log("Server running....")
-        console.log({base,limit})
+        console.log({base,limit, fileName, fileDest})
 
         /*Creación de la Tabla*/ 
 
@@ -27,7 +29,8 @@ export class ServerApp{
            const wasCreated = new SaveFile()
             .execute({
                 fileContent:table,
-                fileDestination: `outputs/table-${base}`
+                fileDestination: `${fileDest}/table-${base}`,
+                fileName: fileName
             });
 
             (wasCreated)? console.log("File was created!!") : console.log("File was not created!!");

@@ -15,10 +15,10 @@ async function main() {
 
     console.log("Main Ejecutado📢🚀")
 
-    const {b: base, l: limit, s:showTable} = yarg
+    const {b: base, l: limit, s:showTable, n:fileName, d:fileDest} = yarg
 
 
-    ServerApp.run({base, limit, showTable});
+    ServerApp.run({base, limit, showTable, fileName, fileDest});
 
 }
 

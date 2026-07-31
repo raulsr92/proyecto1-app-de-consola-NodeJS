@@ -8,8 +8,8 @@ export interface SaveFileUseCase{
 
 export interface SaveFileOptions{
     fileContent   : string,
-    fileDestination?  : string,
-    fileName?     : string
+    fileDestination  : string,
+    fileName    : string
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Clase de caso de uso 
@@ -24,8 +24,8 @@ export class SaveFile implements SaveFileUseCase {
     }
     execute({
             fileContent, 
-            fileDestination = 'outputs', 
-            fileName ='table'
+            fileDestination, 
+            fileName
         }:SaveFileOptions):boolean{
 
         try {
