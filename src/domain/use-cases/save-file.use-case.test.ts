@@ -1,5 +1,6 @@
+import { options } from "yargs";
 import { SaveFile } from "./save-file.use-case"
-import fs from "fs";
+import fs, { mkdirSync } from "fs";
 
 describe('Test in UseCase Save File',()=>{
 
@@ -19,6 +20,8 @@ describe('Test in UseCase Save File',()=>{
         fs.rmSync('outputs', {recursive:true,force:true})
 
         fs.rmSync(`${customOptions.fileDestination}`, {recursive:true,force:true})
+
+        //jest.clearAllMocks()
 
     })
 
@@ -70,6 +73,37 @@ describe('Test in UseCase Save File',()=>{
         expect(fileContent).toContain(customOptions.fileContent)
 
     })
-    
 
+
+    test('Should return false if directory could not be created', ()=>{
+
+        const saveFile = new SaveFile();
+
+        const mkdirSpy = jest.spyOn(fs, 'mkdirSync').mockImplementation(
+            ()=>{ throw new Error('Error');}
+        )
+        const result = saveFile.execute(customOptions)
+        expect(result).toBe(false)
+
+        //Aquí restauras la función original
+
+        mkdirSpy.mockRestore();
+    })
+    
+    test('Should return false if file could not be created', ()=>{
+
+        const saveFile = new SaveFile();
+
+            
+        const writeFileSpy = jest.spyOn(fs,'writeFileSync' ).mockImplementation(
+            ()=>{throw new Error('This is a custom writing error message');}
+        )
+
+        const result = saveFile.execute({fileContent:'Hola!!!! 🔥' })
+
+        expect(result).toBe(false)
+
+
+
+    })
 })
